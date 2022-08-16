@@ -1,18 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/yellow_four"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/tvGetURL"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="18sp"
+        android:text="Please enter a URL:"
+        android:textStyle="normal"
+        android:textAllCaps="false"
+        android:textAlignment="center"
+        android:textColor="@color/text"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="50dp"/>
+
+    <EditText
+        android:id="@+id/edGetURL"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/black"
+        android:textColorHint="@color/black"
+        android:hint="Enter a URL"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGetURL"
+        android:layout_marginTop="15dp"
+        android:layout_marginStart="15dp"/>
+
+    <Button
+        android:id="@+id/btnFind"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        app:layout_constraintLeft_toRightOf="@id/edGetURL"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvGetURL"
+        android:layout_marginTop="15dp"
+        android:text="Find"
+        android:background="@null"
+        android:textColor="@color/text"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imPlayingSong"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:layout_marginTop="50dp"
+            android:background="@color/grey_light"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/edGetURL" />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:layout_marginTop="50dp">
+
+            <SeekBar
+                android:id="@+id/sbGetURl"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="1"
+                android:progress="50"
+                app:layout_constraintBottom_toTopOf="@id/imBtnPlay"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <LinearLayout
+                android:layout_width="190dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/imBtnBack"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:src="@drawable/ic_previous_48" />
+
+                <ImageButton
+                    android:id="@+id/imBtnPlay"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:src="@drawable/ic_play_48" />
+
+                <ImageButton
+                    android:id="@+id/imBtnNext"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:src="@drawable/ic_next_48" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_Adding_to_BD"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textColor="@color/text"
+        android:text="Add to BD"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        android:textAllCaps="false"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="50dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
