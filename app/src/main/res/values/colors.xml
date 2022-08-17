@@ -26,6 +26,7 @@
 
 
     <color name="text">#E7E7E7</color>
+    <color name="underline">#BDB8B8</color>
 
 
 </resources>
