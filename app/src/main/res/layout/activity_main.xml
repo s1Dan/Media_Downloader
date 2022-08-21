@@ -8,15 +8,6 @@
     android:background="@color/yellow_four"
     tools:context=".MainActivity">
 
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"
-        android:fitsSystemWindows="true"
-        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tvGetURL"
@@ -35,27 +26,27 @@
 
     <EditText
         android:id="@+id/edGetURL"
-        android:layout_width="280dp"
+        android:layout_width="300dp"
         android:layout_height="50dp"
         android:backgroundTint="@color/black"
         android:textColorHint="@color/black"
         android:hint="Enter a URL"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvGetURL"
-        android:layout_marginTop="15dp"
-        android:layout_marginStart="15dp"/>
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"/>
 
-    <Button
+    <ImageButton
         android:id="@+id/btnFind"
-        android:layout_width="100dp"
+        android:layout_width="50dp"
         android:layout_height="50dp"
-        app:layout_constraintLeft_toRightOf="@id/edGetURL"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvGetURL"
-        android:layout_marginTop="15dp"
-        android:text="Find"
+        android:src="@drawable/ic_baseline_search_24"
         android:background="@null"
-        android:textColor="@color/text"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +58,9 @@
             android:id="@+id/imPlayingSong"
             android:layout_width="250dp"
             android:layout_height="250dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="50dp"
+            android:layout_marginEnd="15dp"
             android:background="@color/grey_light"
             android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -143,7 +136,7 @@
         android:textAllCaps="false"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="50dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
