@@ -2,13 +2,8 @@ package com.s1dan.mediadownloader
 
 import android.Manifest
 import android.app.DownloadManager
-import android.content.BroadcastReceiver
 import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
 import android.content.pm.PackageManager
-import android.media.AudioManager
-import android.media.MediaParser
 import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Build
@@ -16,17 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
-import android.view.MenuItem
 import android.widget.*
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
-import kotlinx.coroutines.delay
-import java.io.IOException
-import java.net.URL
+
+import com.s1dan.mediadownloader.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityMainBinding
 
     private lateinit var editTextGetURL: EditText
     private lateinit var imageViewPicture: ImageView
@@ -42,16 +34,15 @@ class MainActivity : AppCompatActivity() {
     //way 1
     private val STORAGE_PERMISSION_CODE: Int = 1000
 
-    // way 2
-    var mydownload: Long = 0
-
     val audioURL = "https://www.youtube.com/watch?v=Wld5taGa1ag"
     val imageURL = "https://yandex.ru/images/search?utm_source=main_stripe_big&text=Совообразные&nl=1&source=morda&pos=4&rpt=simage&img_url=http%3A%2F%2Fs1.1zoom.ru%2Fbig3%2F888%2FEyes_Owls_Bubo_502568.jpg&lr=103817"
     val testURL = "https://atmiyauni.ac.in/wp-content/uploads/2020/04/AU-Brochure-update-March-2020.pdf"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        
 
         val mediaPlayer = MediaPlayer.create(this, R.raw.music)
 
@@ -90,12 +81,15 @@ class MainActivity : AppCompatActivity() {
 
         btnNext.setOnClickListener {  }
 
+        val btnOpen = findViewById<Button>(R.id.btn_Adding_to_BD)
+        btnOpen.setOnClickListener {
+
+        }
+
 
 
 
         btnFind.setOnClickListener {
-
-            // Way 1
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
                     PackageManager.PERMISSION_DENIED) {
@@ -105,55 +99,14 @@ class MainActivity : AppCompatActivity() {
                     requestPermissions(arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), STORAGE_PERMISSION_CODE)
                 } else {
                     // permission already granted, perform download
-
                     startDownloading()
-
                 }
-
 
             } else {
                 // system os is less than marshmallow, runtime permission not required, perform download
                 startDownloading()
             }
-
         }
-
-
-
-
-
-
-
-
-
-
-        // Way 2
-//            Toast.makeText(applicationContext, "Button pressed!", Toast.LENGTH_SHORT).show()
-//
-//            val request = DownloadManager.Request(
-//                Uri.parse(testURL))
-//                .setTitle("It is a title")
-//                .setDescription("And this is a Description")
-//                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE)
-//                .setAllowedOverMetered(true)
-//
-//            val downloadmanager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
-//            mydownload = downloadmanager.enqueue(request)
-//
-//        }
-//
-//        var broadcast = object:BroadcastReceiver(){
-//            override fun onReceive(p0: Context?, p1: Intent?) {
-//                var id = p1?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
-//                if (id==mydownload) {
-//                    Toast.makeText(applicationContext, "Download Completed", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
-//
-//        registerReceiver(broadcast, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
-
-
 
         skBar.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, progress: Int, changed: Boolean) {
@@ -201,9 +154,6 @@ class MainActivity : AppCompatActivity() {
         // get download service, and enqueue file
         val manager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
         manager.enqueue(request)
-
-
-
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -222,25 +172,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun OpenFile() {
 
-    private fun playAudio() {
-
-        mediaPlayer = MediaPlayer()
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC)
-
-        try {
-            mediaPlayer.setDataSource(audioURL)
-            mediaPlayer.prepare()
-            mediaPlayer.start()
-
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-        Toast.makeText(this, "Audio started playing", Toast.LENGTH_SHORT).show()
     }
-
-    private fun pauseAudio() { }
-
-
-
 }
